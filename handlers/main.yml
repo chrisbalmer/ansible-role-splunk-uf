@@ -1,0 +1,7 @@
+---
+- name: Restart Splunk for Windows
+  win_service:
+    name: SplunkForwarder
+    state: restarted
+  vars:
+    ansible_command_timeout: 300

@@ -1,0 +1,22 @@
+---
+suf_version: 7.2.6
+suf_build: c0bf0f679ce9
+suf_deployment_server: "ds1.splunk.example.com"
+suf_deployment_port: 8089
+
+suf_win_download: "https://download.splunk.com/products/universalforwarder/releases/{{ suf_version }}/windows/splunkforwarder-{{ suf_version }}-{{ suf_build }}-x64-release.msi"
+suf_win_install_args: "AGREETOLICENSE=yes SERVICESTARTTYPE=auto /quiet"
+suf_win_msi_id: '{0CB85634-B0C7-44E6-9305-8D3043864E0E}'
+suf_win_deployment_app_path: "C:\\Program Files\\SplunkUniversalForwarder\\etc\\apps\\1000-deploy\\local\\"
+suf_win_clean_conf:
+  - "C:\\Program Files\\SplunkUniversalForwarder\\etc\\system\\local\\inputs.conf"
+  - "C:\\Program Files\\SplunkUniversalForwarder\\etc\\system\\local\\deploymentclient.conf"
+  - "C:\\Program Files\\SplunkUniversalForwarder\\etc\\system\\local\\outputs.conf"
+
+
+suf_linux_download: "https://download.splunk.com/products/universalforwarder/releases/{{ suf_version }}/windows/splunkforwarder-{{ suf_version }}-{{ suf_build }}-x64-release.msi"
+suf_linux_deployment_app_path: "/opt/SplunkUniversalForwarder/etc/apps/1000-deploy/local/"
+suf_linux_clean_conf:
+  - "/opt/SplunkUniversalForwarder/etc/system/local/inputs.conf"
+  - "/opt/SplunkUniversalForwarder/etc/system/local/deploymentclient.conf"
+  - "/opt/SplunkUniversalForwarder/etc/system/local/outputs.conf"

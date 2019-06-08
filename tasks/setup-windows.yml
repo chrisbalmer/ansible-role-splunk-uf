@@ -1,0 +1,28 @@
+---
+- name: Install Splunk Forwarder
+  win_package:
+    path: "{{ suf_download }}"
+    product_id: "{{ suf_msi_id }}"
+    arguments: "{{ suf_install_args }}"
+    wait: yes
+    state: present
+- name: Clean local deploymentclient.conf
+  win_file:
+    path: "{{ item }}"
+    state: absent
+  loop: "{{ suf_clean_conf }}"
+  notify: Restart Splunk for Windows
+- name: Verify 1000-deploy app path
+  win_file:
+    path: "{{ suf_deployment_app_path }}"
+    state: directory
+- name: Configure deploymentclient.conf
+  win_template:
+    src: ./files/deploymentclient.conf.j2
+    dest: "{{ suf_deployment_app_path }}deploymentclient.conf"
+  notify: Restart Splunk for Windows
+- name: Verify service
+  win_service:
+    name: SplunkForwarder
+    start_mode: auto
+    state: started
